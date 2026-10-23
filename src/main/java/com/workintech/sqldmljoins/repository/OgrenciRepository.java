@@ -46,7 +46,11 @@ public interface OgrenciRepository extends JpaRepository<Ogrenci, Long> {
     @Query(value = QUESTION_8, nativeQuery = true)
     List<StudentClassCount> findStudentClassCount();
 
-    String QUESTION_9 = "SELECT o.ad, o.soyad, COUNT(i.kitapno) FROM ogrenci o LEFT JOIN islem i ON o.ogrno = i.ogrno GROUP BY o.ogrno, o.ad, o.soyad;";
+    // QUESTION_9
+    String QUESTION_9 = "SELECT o.ad AS ad, o.soyad AS soyad, COUNT(i.kitapno) AS count " +
+            "FROM ogrenci o " +
+            "INNER JOIN islem i ON o.ogrno = i.ogrno " +
+            "GROUP BY o.ad, o.soyad";
     @Query(value = QUESTION_9, nativeQuery = true)
     List<StudentNameSurnameCount> findStudentNameSurnameCount();
 }
